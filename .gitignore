@@ -1,3 +1,7 @@
+#files
 token.txt
 config.py
 start.bat
+
+#pycahce 
+__pycache__
