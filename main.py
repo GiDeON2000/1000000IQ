@@ -1,16 +1,18 @@
 import nextcord
 import config
 import os
+import json
+from Utils import functions
 from nextcord.ext import commands
 from config import settings
 from config import colors
-#
+
 #====================================================
 
 def_prefix = settings['DEF_PREFIX']
 token = settings['TOKEN']
 
-client = commands.Bot(command_prefix=def_prefix)
+client = commands.Bot(command_prefix=functions.get_prefix)
 client.remove_command('help')
 
 ConnectionMain = False
@@ -42,6 +44,30 @@ async def on_disconnect():
     print("\n======================")
     print("ERROR: The bot has disconnected from Discord!")
     print("======================\n")
+
+
+
+@client.event
+async def on_guild_join(guild):
+    with open('prefixes.json', 'r') as f:
+        prefixes = json.load(f)
+
+    prefixes[str(guild.id)] = def_prefix
+
+    with open('prefixes.json', 'w') as f:
+        json.dump(prefixes, f, indent=4)
+
+
+
+@client.event
+async def on_guild_remove(guild):
+    with open('prefixes.json', 'r') as f:
+        prefixes = json.load(f)
+
+    prefixes.pop(str(guild.id))
+
+    with open('prefixes.json', 'w') as f:
+        json.dump(prefixes, f, indent=4)
 
 
 
