@@ -4,4 +4,4 @@ config.py
 start.bat
 
 #pycahce 
-__pycache__
+/__pycache__
