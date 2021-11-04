@@ -4,7 +4,7 @@ import os
 from nextcord.ext import commands
 from config import settings
 from config import colors
-
+#
 #====================================================
 
 def_prefix = settings['DEF_PREFIX']
