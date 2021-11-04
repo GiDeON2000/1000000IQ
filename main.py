@@ -1,5 +1,6 @@
 import nextcord
 import config
+import os
 from nextcord.ext import commands
 from config import settings
 from config import colors
@@ -75,11 +76,11 @@ async def on_command_error(ctx, err):
     except dpy_errors.Forbidden:
         pass
 
-        
 
-for file in os.listdir('./cogs'):
+
+for file in os.listdir('./Cogs'):
     if file.endswith(".py"):
-        client.load_extension(f'cogs.{file[:-3]}')
+        client.load_extension(f'Cogs.{file[:-3]}')
         print(f"Загружен ког - {file[:-3]}")
 
 
