@@ -6,3 +6,6 @@ start.bat
 #pycahce 
 *__pycache__*
 *.pyc 
+
+
+.log
