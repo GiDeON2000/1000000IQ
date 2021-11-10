@@ -1,18 +1,27 @@
 import nextcord
-import config
-import os
-import json
-from Utils import functions
 from nextcord.ext import commands
+
+import config
 from config import settings
 from config import colors
 
+import os
+import json
+import logging
+
+from Utils import functions
+
 #====================================================
+
+intents = nextcord.Intents.all()
+
+logging.basicConfig(level=logging.INFO, format="(%(asctime)s) %(levelname)s %(message)s",
+                    datefmt="%m/%d/%y - %H:%M:%S %Z")
 
 def_prefix = settings['DEF_PREFIX']
 token = settings['TOKEN']
 
-client = commands.Bot(command_prefix=functions.get_prefix)
+client = commands.Bot(command_prefix=functions.get_prefix, intents=intents)
 client.remove_command('help')
 
 ConnectionMain = False
